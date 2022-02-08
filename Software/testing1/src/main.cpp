@@ -33,10 +33,10 @@ void loop() {
     }
     else {
         if(positionServo > minServo) {
-        positionServo -= stepServo;
+            positionServo -= stepServo;
         }
         else {
-        directionServo = !directionServo;
+            directionServo = !directionServo;
         }
     }
     if(positionServo > maxServo) {
