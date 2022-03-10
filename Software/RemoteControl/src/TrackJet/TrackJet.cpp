@@ -82,6 +82,14 @@ void TrackJetClass::checkConnection() {
     }
 }
 
+int8_t TrackJetClass::controlGetX() {
+    return getControl().joystickX;
+}
+
+int8_t TrackJetClass::controlGetY() {
+    return getControl().joystickY;
+}
+
 String TrackJetClass::commandGet() {
     String command = String(commandGetCaptain());
     command.toLowerCase();

@@ -41,6 +41,8 @@ public:
 
     void startWiFiCaptain(String name="", String password="");
     void checkConnection();
+    int8_t controlGetX();
+    int8_t controlGetY();
     String commandGet();
     String commandGetIndexed(uint8_t index);
     void commandClear();

@@ -19,6 +19,8 @@ WebServer webserver(80);
 credentials apCredentials;
 credentials stationCredentials;
 
+controlData control;
+
 // DNS server
 uint8_t DNS_PORT = 53;
 DNSServer dnsServer;
@@ -32,6 +34,7 @@ const uint8_t extWiFiConnectTimeout = 50;   //*100 ms
 
 bool clientConnectedCaptain[3] = {false, false, false};
 uint8_t clientNumCaptain = 0;
+
 
 void handleRoot() {
     File f = SPIFFS.open("/webApp.html", "r");
@@ -323,19 +326,12 @@ void onWebSocketEvent(uint8_t client_num, WStype_t type, uint8_t * payload, size
             token = strtok((char *)payload, delimiter);
             char controlMsg[] = "control";
             char commandMsg[] = "command";
-            int8_t joystickX = 0, joystickY = 0;
+            //int8_t joystickX = 0, joystickY = 0;
             if(strcmp(token, controlMsg) == 0) {
                 token = strtok(NULL, delimiter);
-                joystickX = atoi(token);
+                control.joystickX = atoi(token);
                 token = strtok(NULL, delimiter);
-                joystickY = atoi(token);
-
-                uint8_t joystickServoX = map(joystickX, -100, 100, 0, 180);
-                uint8_t joystickServoY = map(joystickY, -100, 100, 0, 180);
-                
-                TrackJet.servoSetPosition(1, joystickServoX);
-                TrackJet.servoSetPosition(2, joystickServoY);
-
+                control.joystickY = atoi(token);
             }
             else if(strcmp(token, commandMsg) == 0) {
                 token = strtok(NULL, delimiter);
@@ -357,6 +353,10 @@ void onWebSocketEvent(uint8_t client_num, WStype_t type, uint8_t * payload, size
         default:
             break;
     }
+}
+
+controlData getControl() {
+    return control;
 }
 
 char * commandGetCaptain() {

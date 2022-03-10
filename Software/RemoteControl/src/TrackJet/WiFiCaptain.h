@@ -7,6 +7,10 @@ struct credentials {
     char ssid[33] = "";
     char password[65] = "";
 };
+struct controlData {
+    int8_t joystickX = 0;
+    int8_t joystickY = 0;
+};
 
 void handleRoot();
 void handleStatus();
@@ -29,6 +33,7 @@ void setApCredentials(String ssid, String password);
 String ipToDisp();
 
 void onWebSocketEvent(uint8_t client_num, WStype_t type, uint8_t * payload, size_t length);
+controlData getControl();
 char * commandGetCaptain();
 void commandClearCaptain();
 void commandSendCaptain(String msgType, String payload);
