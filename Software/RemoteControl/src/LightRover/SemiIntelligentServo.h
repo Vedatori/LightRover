@@ -6,7 +6,7 @@
 class SemiIntelligentServo {
     static const uint8_t servoFreqPWM = 50;
     static const uint8_t servoResolPWM = 16;
-    static const uint16_t servoCountLow = 1300; //1707
+    static const uint16_t servoCountLow = 2700; //1707
     static const uint16_t servoCountHigh = 8187;
     uint8_t pwmPin;
     uint8_t pwmChannel;
