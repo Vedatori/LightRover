@@ -55,6 +55,8 @@ public:
     void internCommandHandle();
     void commandSend(String type, String text);
     void commandDisp(String text);
+
+    void diagnosticPrint();
 };
 
 extern LightRoverClass LightRover;

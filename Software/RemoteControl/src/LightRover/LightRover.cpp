@@ -147,4 +147,9 @@ void LightRoverClass::commandDisp(String text) {
     commandSend("commandDisp", text);
 }
 
+void LightRoverClass::diagnosticPrint() {
+    printf("Servo steer: %f, Servo drive: %f, Sonar: %lu\n", 
+        servoGetPosition(1), servoGetPosition(2), sonarGetDistance());
+}
+
 LightRoverClass LightRover;

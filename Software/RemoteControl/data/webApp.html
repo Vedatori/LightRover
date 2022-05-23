@@ -3,7 +3,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="theme-color" content="#404040"/>
-		<title>TrackJet</title>
+		<title>LightRover</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<style>
 			body {
@@ -13,32 +13,20 @@
 	</head>
 	<body>
 		<div class = "wrapper">
-			<div class="box1"><a href="http://wp.vedatori.com/" target="_blank"><img src="http://wp.vedatori.com/wp-content/uploads/2019/03/logo-2-e1551903315141.png" alt="vedatori.com" style="height:10vh;" align="middle"></a></div>
+			<div class="box1"><a href="http://wp.vedatori.com/" target="_blank"><img src="http://wp.vedatori.com/wp-content/uploads/2019/03/logo-2-e1551903315141x.png" alt="Spolek Vědátoři" style="height:10vh;" align="middle"></a></div>
 			<div class="box2"><h1 style="font-size:3.5vh;text-align:center"><font face='verdana'>
-				<a href="https://github.com/vedatori/TrackJet" target="_blank">TrackJet</a><br>Remote Control
+				<a href="https://github.com/vedatori/LightRover" target="_blank">LightRover</a><br>Remote Control
 			</font></h1></div>
 			<div class="box3" id="position">
 				<input type = "text" id = "commandInput" placeholder = "Command entry" autofocus="autofocus"/>
 				<input type = "button" value = "Enter" onclick = "commandEnter()"/>
 				<a href='/wifi'><input type = "button" value = "WiFi setup"/></a>
-				<a href='/status'><input type = "button" value = "Status"/></a>
 			</div>
-			<div class="box31" id="cam">
-				<img id="stream" class="stream" src="">
-			</div>
+
 			<div class="box4" id="container"><canvas class="canvas" id="canvas"></canvas></div>
 		</div>
 		
 		<script>
-			var camElement = document.getElementById('cam');
-			var streamElement = document.getElementById('stream');
-			
-			const camWidth = Math.min(camElement.clientHeight, camElement.clientHeight);
-			streamElement.style.width = 2 * camWidth;
-			streamElement.style.height = 2 * camWidth;
-
-			camElement.scrollTop = camElement.scrollHeight;
-			
 			const joystick = createJoystick(document.getElementById('container'));
 
 			const maxDiff = Math.min(document.getElementById('container').clientWidth, document.getElementById('container').clientHeight)/2.5;
@@ -315,17 +303,6 @@
 
 			// Call the init function as soon as the page loads
 			window.addEventListener("load", init, false);
-
-			const view = document.getElementById('stream');
-			const WS_URL = "ws://" + window.location.host + ":82";
-			const ws = new WebSocket(WS_URL);
-					
-			ws.onmessage = message => {
-				if (message.data instanceof Blob) {
-				var urlObject = URL.createObjectURL(message.data);
-				view.src = urlObject;
-				}
-			};
 		</script>
 	</body>
 </html>
